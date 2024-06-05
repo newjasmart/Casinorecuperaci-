@@ -1,12 +1,96 @@
 package cat.boscdelacoma.casinoreptefinal;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
+public class PrimaryController {
+
+    @FXML
+    private Button btn_mysql;
+
+    @FXML
+    private Button btn_objectdb;
+
+    @FXML
+    private TextField txt_user;
+
+    @FXML
+    private PasswordField txt_password;
+
+    private String selectedDatabase;
+
+    @FXML
+    private void initialize() {
+        btn_mysql.setOnAction(event -> handleDatabaseSelection("MySQL"));
+        btn_objectdb.setOnAction(event -> handleDatabaseSelection("ObjectDB"));
+    }
+
+    private void handleDatabaseSelection(String database) {
+        selectedDatabase = database;
+        showAlert(AlertType.INFORMATION, "Database Selection", "Selected database: " + selectedDatabase);
+    }
+
+    @FXML
+    private void mostrarInformacio() {
+        String username = txt_user.getText();
+        String password = txt_password.getText();
+
+        if (selectedDatabase == null || username.isEmpty() || password.isEmpty()) {
+            showAlert(AlertType.ERROR, "Form Error!", "Please enter all details and select a database");
+            return;
+        }
+
+        boolean loginSuccessful = false;
+
+        if ("MySQL".equals(selectedDatabase)) {
+            loginSuccessful = authenticateMySQL(username, password);
+        } else if ("ObjectDB".equals(selectedDatabase)) {
+            loginSuccessful = authenticateObjectDB(username, password);
+        }
+
+        if (loginSuccessful) {
+            // Proceed to the next page
+            showAlert(AlertType.INFORMATION, "Login Successful!", "Welcome " + username);
+        } else {
+            showAlert(AlertType.ERROR, "Login Failed", "Invalid credentials or database connection error.");
+        }
+    }
+
+    private boolean authenticateMySQL(String username, String password) {
+        // Implement MySQL authentication logic
+        // This might involve connecting to a MySQL database and validating the credentials
+        // Return true if authentication is successful, false otherwise
+        return false; // Placeholder
+    }
+
+    private boolean authenticateObjectDB(String username, String password) {
+        // Implement ObjectDB authentication logic
+        // This might involve connecting to an ObjectDB database and validating the credentials
+        // Return true if authentication is successful, false otherwise
+        return false; // Placeholder
+    }
+
+    private void showAlert(AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}
+
+
+/*package cat.boscdelacoma.casinoreptefinal;
+
 import java.io.IOException;
 import java.net.URL;
-import static java.util.Collections.list;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -155,3 +239,5 @@ public class PrimaryController {
         }
     }
 }
+
+*/
