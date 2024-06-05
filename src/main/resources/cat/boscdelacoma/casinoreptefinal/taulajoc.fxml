@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cat.boscdelacoma.casinoreptefinal.Joc">
+   <children>
+      <HBox layoutY="21.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #0fea88; -fx-border-radius: 10; -fx-border-width: 5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.6666666666666288">
+         <children>
+            <Button fx:id="btn_mysql" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #0fea88;" text="MySQL" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="40.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_objectdb" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #4e5a51;" text="ObjectDB" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="40.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="14.0" layoutY="146.0" prefHeight="254.0" prefWidth="398.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TableView fx:id="Taula_Joc" layoutX="200.0" layoutY="27.0" prefHeight="254.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+              <columns>
+                <TableColumn fx:id="Joc_nom" prefWidth="299.3332824707031" text="Nom Joc" />
+                  <TableColumn fx:id="Joc_Tipus" prefWidth="300.00006103515625" text="Tipus de Joc" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

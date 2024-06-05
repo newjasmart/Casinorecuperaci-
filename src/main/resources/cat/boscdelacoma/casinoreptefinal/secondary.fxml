@@ -1,16 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cat.boscdelacoma.casinoreptefinal.SecondaryController">
-    <children>
-        <Label text="Secondary View" />
-        <Button fx:id="secondaryButton" text="Switch to Primary View" onAction="#switchToPrimary" />
-    </children>
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cat.boscdelacoma.casinoreptefinal.Client">
+   <children>
+      <HBox layoutY="21.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #0fea88; -fx-border-radius: 10; -fx-border-width: 5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.6666666666666288">
+         <children>
+            <Button fx:id="btn_mysql" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #0fea88;" text="MySQL" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="40.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_objectdb" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #4e5a51;" text="ObjectDB" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="40.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <AnchorPane fx:id="panel_taules" layoutY="146.0" prefHeight="261.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField fx:id="txt_nom" layoutX="411.0" layoutY="70.0" promptText="Nom" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
+            <TextField fx:id="txt_tipus_dni" layoutX="411.0" layoutY="114.0" promptText="DNI / Tipus" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
+            <TextField fx:id="txt_punts_posicio" layoutX="411.0" layoutY="160.0" promptText="Punts Fidelitat / Posició" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
+            <ComboBox fx:id="combobox_taules" layoutX="411.0" layoutY="31.0" prefWidth="150.0" promptText="Escull Taula" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
+            <Button fx:id="btn_eliminar" layoutX="515.3333333333334" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #ff0000;" text="Eliminar" AnchorPane.leftAnchor="515.0" AnchorPane.rightAnchor="10.0" />
+            <ImageView fx:id="img" fitHeight="232.0" fitWidth="274.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../java/cat/boscdelacoma/casinoreptefinal/ftixa.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btn_editar" layoutX="407.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #e97451;" text="Editar" />
+            <Button fx:id="btn_crear" layoutX="300.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #2bbe0b;" text="Crear" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

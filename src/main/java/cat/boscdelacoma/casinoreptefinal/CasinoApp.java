@@ -1,28 +1,27 @@
 package cat.boscdelacoma.casinoreptefinal;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Scanner;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CasinoApp extends Application {
+    
+    private static Scene scene;
 
-    static void setRoot(String secondary) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    static void setRoot(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(CasinoApp.class.getResource(fxml + ".fxml"));
+        Parent root = fxmlLoader.load();
+        scene.setRoot(root);
     }
-    private MySQLDatabase mySQLDatabase;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(CasinoApp.class.getResource("primary.fxml"));
-   
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Parent root = fxmlLoader.load();
+        scene = new Scene(root, 600, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
