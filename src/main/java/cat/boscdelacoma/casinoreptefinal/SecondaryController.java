@@ -15,6 +15,41 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 public class SecondaryController {
+    
+    private void openNewWindow(String fxmlFile) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    
+    @FXML
+    private Button btnVeureTaulaEmpleat;
+    @FXML
+    private Button btnVeureTaulaClient;
+    @FXML
+    private Button btnVeureTaulaJoc;
+
+    @FXML
+    public void handleButtonAction(ActionEvent event) throws IOException {
+        System.out.println("handleButtonAction called");
+        Button button = (Button) event.getSource();
+
+        switch (button.getText()) {
+            case "Veure Taula Empleat":
+                openNewWindow("taulaempleat.fxml");
+                break;
+            case "Veure Taula Client":
+                openNewWindow("taulaclient.fxml");
+                break;
+            case "Veure Taula Joc":
+                openNewWindow("taulajoc.fxml");
+                break;
+            default:
+                break;
+        }
+    }
 
     @FXML
     private Button btn_mysql;
@@ -92,38 +127,5 @@ public class SecondaryController {
         // Handle ComboBox selection event
         String selectedTable = combobox_taules.getSelectionModel().getSelectedItem();
         System.out.println("Selected table: " + selectedTable);
-    }
-    
-    
-    @FXML
-    private Button btnVeureTaulaEmpleat;
-    @FXML
-    private Button btnVeureTaulaClient;
-    @FXML
-    private Button btnVeureTaulaJoc;
-
-    @FXML
-    public void handleButtonAction(ActionEvent event) {
-        Button button = (Button) event.getSource();
-        String fxmlFile = "";
-
-        if (button == btnVeureTaulaEmpleat) {
-            fxmlFile = "taulaempleat.fxml";
-        } else if (button == btnVeureTaulaClient) {
-            fxmlFile = "taulaclient.fxml";
-        } else if (button == btnVeureTaulaJoc) {
-            fxmlFile = "taulajoc.fxml";
-        }
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = (Stage) button.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
