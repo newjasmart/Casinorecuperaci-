@@ -4,13 +4,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cat.boscdelacoma.casinoreptefinal.Client">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cat.boscdelacoma.casinoreptefinal.SecondaryController">
    <children>
       <HBox layoutY="21.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #0fea88; -fx-border-radius: 10; -fx-border-width: 5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.6666666666666288">
          <children>
@@ -39,13 +37,23 @@
             <TextField fx:id="txt_punts_posicio" layoutX="411.0" layoutY="160.0" promptText="Punts Fidelitat / Posició" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
             <ComboBox fx:id="combobox_taules" layoutX="411.0" layoutY="31.0" prefWidth="150.0" promptText="Escull Taula" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
             <Button fx:id="btn_eliminar" layoutX="515.3333333333334" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #ff0000;" text="Eliminar" AnchorPane.leftAnchor="515.0" AnchorPane.rightAnchor="10.0" />
-            <ImageView fx:id="img" fitHeight="232.0" fitWidth="274.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../java/cat/boscdelacoma/casinoreptefinal/ftixa.png" />
-               </image>
-            </ImageView>
             <Button fx:id="btn_editar" layoutX="407.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #e97451;" text="Editar" />
             <Button fx:id="btn_crear" layoutX="300.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #2bbe0b;" text="Crear" />
+            <Button layoutX="54.0" layoutY="36.0" mnemonicParsing="false" style="-fx-max-width: 300;" text="Veure Taula Empleat" onAction="#handleButtonAction" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="358.66666666666663">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Button>
+            <Button layoutX="63.0" layoutY="107.0" mnemonicParsing="false" style="-fx-max-width: 300;" text="Veure Taula Client" onAction="#handleButtonAction" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="358.6666666666667">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Button>
+            <Button layoutX="73.0" layoutY="173.0" mnemonicParsing="false" style="-fx-max-width: 300;" text="Veure Taula Joc" onAction="#handleButtonAction" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="358.6666666666667">
+                <font>
+                    <Font size="18.0" />
+                </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>

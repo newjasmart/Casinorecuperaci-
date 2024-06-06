@@ -1,15 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cat.boscdelacoma.casinoreptefinal;
 
-/**
- *
- * @author TimOliver
- */
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,32 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLDatabase {
-   Connection SQLConexion;
-    
-    private Connection connect() {
-        // URL de la base de dades MySQL
-        String host = "localhost";
-        String puerto = "3306";
-        String nameDB = "casino";
-        String driver = "com.mysql.cj.jdbc.Driver";
-        String url = "jdbc:mysql://localhost:3306/casino";
-        String user = "root";
-        String password = "";
-        Connection conn = null;
-        try {
-            Class.forName(driver);
-            SQLConexion = DriverManager.getConnection(url, user, password);
-            System.out.println("Connectat");
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return SQLConexion;
+    private SQLDBConnector dbConnector;
+
+    public MySQLDatabase() {
+        dbConnector = new SQLDBConnector();
     }
 
     public void inserirClient(Client client) {
-        String sql = "INSERT INTO clients(nom, dni, puntsFidelitat) VALUES(?, ?, ?)";
-
-        try (Connection conn = this.connect();
+        String sql = "INSERT INTO clients(nom, dni, puntsFidelitat) VALUES(?,?,?)";
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, client.getNom());
             pstmt.setString(2, client.getDni());
@@ -56,8 +30,7 @@ public class MySQLDatabase {
     public List<Client> obtenirClients() {
         List<Client> clients = new ArrayList<>();
         String sql = "SELECT * FROM clients";
-
-        try (Connection conn = this.connect();
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
@@ -69,10 +42,10 @@ public class MySQLDatabase {
         }
         return clients;
     }
-    
+
     public void actualitzarClient(Client client) {
-        String sql = "UPDATE clients SET nom = ?, puntsFidelitat = ? WHERE dni = ?";
-        try (Connection conn = this.connect();
+        String sql = "UPDATE clients SET nom =?, puntsFidelitat =? WHERE dni =?";
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, client.getNom());
             pstmt.setInt(2, client.getPuntsFidelitat());
@@ -82,10 +55,10 @@ public class MySQLDatabase {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void eliminarClient(String dni) {
-        String sql = "DELETE FROM clients WHERE dni = ?";
-        try (Connection conn = this.connect();
+        String sql = "DELETE FROM clients WHERE dni =?";
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, dni);
             pstmt.executeUpdate();
@@ -93,22 +66,22 @@ public class MySQLDatabase {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public void inserirJoc(Joc joc) {
-    String sql = "INSERT INTO jocs(nom, tipus) VALUES(?, ?)";
-    try (Connection conn = this.connect();
-         PreparedStatement pstmt = conn.prepareStatement(sql)) {
-        pstmt.setString(1, joc.getNom());
-        pstmt.setString(2, joc.getTipus());
-        pstmt.executeUpdate();
-    } catch (SQLException e) {
-        System.out.println(e.getMessage());
+        String sql = "INSERT INTO jocs(nom, tipus) VALUES(?,?)";
+        try (Connection conn = dbConnector.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, joc.getNom());
+            pstmt.setString(2, joc.getTipus());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
     }
-    
+
     public void eliminarJoc(String nomJoc) {
-        String sql = "DELETE FROM jocs WHERE nom = ?";
-        try (Connection conn = this.connect();
+        String sql = "DELETE FROM jocs WHERE nom =?";
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, nomJoc);
             pstmt.executeUpdate();
@@ -117,11 +90,10 @@ public class MySQLDatabase {
         }
     }
 
-
     public List<Joc> obtenirJocs() {
         List<Joc> jocs = new ArrayList<>();
         String sql = "SELECT * FROM jocs";
-        try (Connection conn = this.connect();
+        try (Connection conn = dbConnector.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
             while (rs.next()) {
@@ -133,5 +105,4 @@ public class MySQLDatabase {
         }
         return jocs;
     }
-
 }

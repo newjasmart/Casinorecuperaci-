@@ -1,11 +1,18 @@
 package cat.boscdelacoma.casinoreptefinal;
 
+import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 public class PrimaryController {
 
@@ -23,43 +30,36 @@ public class PrimaryController {
 
     private String selectedDatabase;
 
-    @FXML
-    private void initialize() {
-        btn_mysql.setOnAction(event -> handleDatabaseSelection("MySQL"));
-        btn_objectdb.setOnAction(event -> handleDatabaseSelection("ObjectDB"));
-    }
-
-    private void handleDatabaseSelection(String database) {
+    
+   @FXML
+    public void handleDatabaseSelection(ActionEvent event) {
+        Button button = (Button) event.getSource();
+        String database = null;
+        if (button.getId().equals("btn_mysql")) {
+            database = "MySQL";
+        } else if (button.getId().equals("btn_objectdb")) {
+            database = "ObjectDB";
+        }
+        // Handle the database selection
         selectedDatabase = database;
         showAlert(AlertType.INFORMATION, "Database Selection", "Selected database: " + selectedDatabase);
     }
-
+    
     @FXML
-    private void mostrarInformacio() {
-        String username = txt_user.getText();
-        String password = txt_password.getText();
-
-        if (selectedDatabase == null || username.isEmpty() || password.isEmpty()) {
-            showAlert(AlertType.ERROR, "Form Error!", "Please enter all details and select a database");
-            return;
-        }
-
-        boolean loginSuccessful = false;
-
-        if ("MySQL".equals(selectedDatabase)) {
-            loginSuccessful = authenticateMySQL(username, password);
-        } else if ("ObjectDB".equals(selectedDatabase)) {
-            loginSuccessful = authenticateObjectDB(username, password);
-        }
-
-        if (loginSuccessful) {
-            // Proceed to the next page
-            showAlert(AlertType.INFORMATION, "Login Successful!", "Welcome " + username);
-        } else {
-            showAlert(AlertType.ERROR, "Login Failed", "Invalid credentials or database connection error.");
+    private void switchToSecondary(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("secondary.fxml"));
+            AnchorPane secondaryPane = loader.load();
+            Scene secondaryScene = new Scene(secondaryPane);
+            Stage primaryStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            primaryStage.setScene(secondaryScene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-
+    
     private boolean authenticateMySQL(String username, String password) {
         // Implement MySQL authentication logic
         // This might involve connecting to a MySQL database and validating the credentials
