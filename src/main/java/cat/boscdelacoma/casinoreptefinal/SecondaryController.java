@@ -1,6 +1,10 @@
 package cat.boscdelacoma.casinoreptefinal;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +14,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -23,8 +30,6 @@ public class SecondaryController {
         stage.setScene(new Scene(root));
         stage.show();
     }
-    
-    
     
     @FXML
     private Button btnVeureTaulaEmpleat;
@@ -52,6 +57,18 @@ public class SecondaryController {
                 break;
         }
     }
+
+    @FXML
+    private TableView<Client> Taula_Client;
+    
+    @FXML
+    private TableColumn<Client, String> Client_Nom;
+
+    @FXML
+    private TableColumn<Client, String> Client_DNI;
+
+    @FXML
+    private TableColumn<Client, Integer> Client_Punts_Fidelitat;
 
     @FXML
     private Button btn_mysql;
@@ -93,19 +110,7 @@ public class SecondaryController {
 
     @FXML
     private ImageView img;
-
-    @FXML
-    private void handleMySQLButtonAction(ActionEvent event) {
-        // Handle MySQL button click event
-        System.out.println("MySQL button clicked");
-    }
-
-    @FXML
-    private void handleObjectDBButtonAction(ActionEvent event) {
-        // Handle ObjectDB button click event
-        System.out.println("ObjectDB button clicked");
-    }
-
+    
     @FXML
     private void handleEliminarButtonAction(ActionEvent event) {
         // Handle Eliminar button click event
