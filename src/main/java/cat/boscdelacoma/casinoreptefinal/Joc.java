@@ -11,6 +11,8 @@ package cat.boscdelacoma.casinoreptefinal;
 public class Joc {
     private String nom;
     private String tipus;
+    
+    public Joc() {};
 
     public Joc(String nom, String tipus) {
         this.nom = nom;

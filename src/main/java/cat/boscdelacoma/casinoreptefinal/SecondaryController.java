@@ -24,6 +24,8 @@ public class SecondaryController {
         stage.show();
     }
     
+    
+    
     @FXML
     private Button btnVeureTaulaEmpleat;
     @FXML
