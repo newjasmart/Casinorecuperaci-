@@ -1,24 +1,43 @@
 package cat.boscdelacoma.casinoreptefinal;
 
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class MySQLDatabase {
-    private SQLDBConnector dbConnector;
+    
+    private static final Properties pro = loadConfig();
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver"); // Load the MySQL JDBC driver
+            
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return DriverManager.getConnection(pro.getProperty("db.url"), pro.getProperty("db.user"), pro.getProperty("db.password"));
+    }
+    
 
     public MySQLDatabase() {
         dbConnector = new SQLDBConnector();
     }
-
-    public static void addClientData(String nomClient, String tipusDNI) {
-        try (Connection connection = DriverManager.getConnection(db.url, db.user, db.password)) {
-            String query = "INSERT INTO client (Nom, DNI, Punts de Fidelitat) VALUES (?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, nomClient);
-                preparedStatement.setString(2, tipusDNI);
-                preparedStatement.executeUpdate();
+    private SQLDBConnector dbConnector;
+    
+    public static void addClientData(String nomClient, String clientDNI, Integer PuntsFidelitat) {
+        try (Connection connection = getConnection()) {
+            String sql = "INSERT INTO client (Nom, DNI, Punts de Fidelitat) VALUES (?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, nomClient);
+                pstmt.setString(2, clientDNI);
+                pstmt.setInt(3, PuntsFidelitat);
+                pstmt.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -26,28 +45,41 @@ public class MySQLDatabase {
     }
 
     public static void addJocData(String nomJoc, String tipusJoc) {
-        try (Connection connection = DriverManager.getConnection(db.url, db.user, db.password)) {
-            String query = "INSERT INTO joc (Nom, Tipus) VALUES (?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, nomJoc);
-                preparedStatement.setString(2, tipusJoc);
-                preparedStatement.executeUpdate();
+       try (Connection connection = getConnection()) {
+            String sql = "INSERT INTO client (Nom, tipus) VALUES (?, ?,)";
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, nomJoc);
+                pstmt.setString(2, tipusJoc);
+                pstmt.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public static void addEmpleatData(String nomEmpleat, String puntsPosicio) {
-        try (Connection connection = DriverManager.getConnection(db.url, db.user, db.password)) {
-            String query = "INSERT INTO empleat (Nom, Punts_Posicio) VALUES (?, ?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, nomEmpleat);
-                preparedStatement.setString(2, puntsPosicio);
-                preparedStatement.executeUpdate();
+    public static void addEmpleatData(String nomEmpleat, String EmpleatDNI, Integer posicio) {
+        try (Connection connection = getConnection()) {
+            String sql = "INSERT INTO client (Nom, DNI, posicio) VALUES (?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, nomEmpleat);
+                pstmt.setString(2, EmpleatDNI);
+                pstmt.setInt(3, posicio);
+                pstmt.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    
+    static Properties loadConfig() {
+        Properties pro = new Properties();
+        try (DataInputStream input = new DataInputStream(new FileInputStream("config.properties"))) {
+            pro.load(input);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Config file not found: " + ex.getMessage());
+        } catch (IOException ex) {
+            System.out.println("Error reading config file: " + ex.getMessage());
+        }
+        return pro;
     }
 }

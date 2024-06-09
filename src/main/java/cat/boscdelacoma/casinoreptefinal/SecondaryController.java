@@ -1,5 +1,6 @@
 package cat.boscdelacoma.casinoreptefinal;
 
+import static cat.boscdelacoma.casinoreptefinal.MySQLDatabase.getConnection;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -92,8 +93,8 @@ public class SecondaryController {
                 // Add client data to the database
                 String nomClient = txt_nom.getText();
                 String clientDNI = txt_tipus_dni.getText();
-                String puntsFidelitat = txt_punts_posicio.getText();
-                addClientData(nomClient, clientDNI, puntsFidelitat);
+                String PuntsFidelitat = txt_punts_posicio.getText();
+                addClientData(nomClient, clientDNI, PuntsFidelitat);
                 break;
             case "Joc":
                 // Add joc data to the database
@@ -114,19 +115,18 @@ public class SecondaryController {
         }
     }
 
-    private void addClientData(String nomClient, String clientDNI, String puntsFidelitat) {
-        try (Connection connection = DriverManager.getConnection(db.url, db.user, db.password)) {
-            String query = "INSERT INTO client (Nom, DNI, PuntsFidelitat) VALUES (?,?,?)";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
-                preparedStatement.setString(1, nomClient);
-                preparedStatement.setString(2, clientDNI);
-                preparedStatement.setString(3, puntsFidelitat);
-                preparedStatement.executeUpdate();
+    public static void addClientData(String nomClient, String clientDNI, Integer PuntsFidelitat) {
+        try (Connection connection = getConnection()) {
+            String sql = "INSERT INTO client (Nom, DNI, Punts de Fidelitat) VALUES (?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+                pstmt.setString(1, nomClient);
+                pstmt.setString(2, clientDNI);
+                pstmt.setInt(3, PuntsFidelitat);
+                pstmt.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("Client data added: " + nomClient + ", " + clientDNI + ", " + puntsFidelitat);
     }
 
     private void addJocData(String nomJoc, String tipusJoc) {
