@@ -32,6 +32,8 @@ import javafx.stage.Stage;
 
 public class PrimaryController {
     
+    
+    
     ObservableList<Empleat> empleatList = FXCollections.observableArrayList();
     ObservableList<Client> clientList = FXCollections.observableArrayList();
     ObservableList<Joc> jocList = FXCollections.observableArrayList();
@@ -56,36 +58,6 @@ public class PrimaryController {
         }
     }
     
-    private void loadClientTable() throws IOException, SQLException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("path_to_your_fxml_file.fxml"));
-        Parent root = loader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-
-        // Load data into TableView
-        ObservableList<Client> clients = FXCollections.observableArrayList();
-        try (Connection connection = SQLDBConnector.getConnection();
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM clients")) {
-
-            while (resultSet.next()) {
-                String nom = resultSet.getString("nom");
-                String dni = resultSet.getString("dni");
-                int puntsFidelitat = resultSet.getInt("punts_fidelitat");
-                clients.add(new Client(nom, dni, puntsFidelitat));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        Client_Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        Client_DNI.setCellValueFactory(new PropertyValueFactory<>("dni"));
-        Client_Punts_Fidelitat.setCellValueFactory(new PropertyValueFactory<>("puntsFidelitat"));
-
-        Taula_Client.setItems(clients);
-    }
-
     
     @FXML
     private TableView<Client> Taula_Client;

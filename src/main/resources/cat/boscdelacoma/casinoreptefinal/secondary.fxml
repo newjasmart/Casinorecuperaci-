@@ -1,55 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cat.boscdelacoma.casinoreptefinal.SecondaryController">
    <children>
-      <HBox layoutY="21.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #0fea88; -fx-border-radius: 10; -fx-border-width: 5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.6666666666666288">
+      <AnchorPane fx:id="panel_taules" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btn_mysql" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #0fea88;" text="MySQL" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="40.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btn_objectdb" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #4e5a51;" text="ObjectDB" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="40.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-      <AnchorPane fx:id="panel_taules" layoutY="146.0" prefHeight="261.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <TextField fx:id="txt_nom" layoutX="411.0" layoutY="70.0" promptText="Nom" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
-            <TextField fx:id="txt_tipus_dni" layoutX="411.0" layoutY="114.0" promptText="DNI / Tipus" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
-            <TextField fx:id="txt_punts_posicio" layoutX="411.0" layoutY="160.0" promptText="Punts Fidelitat / Posició" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
-            <ComboBox fx:id="combobox_taules" layoutX="411.0" layoutY="31.0" prefWidth="150.0" promptText="Escull Taula" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
-            <Button fx:id="btn_eliminar" layoutX="515.3333333333334" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #ff0000;" text="Eliminar" AnchorPane.leftAnchor="515.0" AnchorPane.rightAnchor="10.0" />
-            <Button fx:id="btn_editar" layoutX="407.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #e97451;" text="Editar" />
-            <Button fx:id="btn_crear" layoutX="300.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" style="-fx-background-color: #2bbe0b;" text="Crear" />
-            <Button layoutX="54.0" layoutY="36.0" mnemonicParsing="false" style="-fx-max-width: 300;" text="Veure Taula Empleat" onAction="#handleButtonAction" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="358.66666666666663">
+            <TextField fx:id="txt_nom" layoutX="300.0" layoutY="140.0" promptText="Nom" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
+            <TextField fx:id="txt_tipus_dni" layoutX="300.0" layoutY="200.0" promptText="DNI / Tipus" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
+            <TextField fx:id="txt_punts_posicio" layoutX="300.0" layoutY="260.0" promptText="Punts Fidelitat / Posició" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
+            <ComboBox fx:id="combobox_taules" layoutX="300.0" layoutY="75.0" onAction="#handleComboBoxAction" prefWidth="150.0" promptText="Escull Taula" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="10.0" />
+            <Button fx:id="btn_crear" layoutX="369.0" layoutY="323.0" mnemonicParsing="false" onAction="#handleCrearButtonAction" prefHeight="25.0" prefWidth="151.0" style="-fx-background-color: #2bbe0b;" text="Afegir Dades" />
+            <Button layoutX="54.0" layoutY="68.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-max-width: 300;" text="Veure Taula Empleat" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="358.6666666666667">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Button>
-            <Button layoutX="63.0" layoutY="107.0" mnemonicParsing="false" style="-fx-max-width: 300;" text="Veure Taula Client" onAction="#handleButtonAction" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="358.6666666666667">
+            <Button layoutX="54.0" layoutY="165.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-max-width: 300;" text="Veure Taula Client" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="359.3333333333333">
                 <font>
                     <Font size="18.0" />
                 </font>
             </Button>
-            <Button layoutX="73.0" layoutY="173.0" mnemonicParsing="false" style="-fx-max-width: 300;" text="Veure Taula Joc" onAction="#handleButtonAction" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="358.6666666666667">
+            <Button layoutX="54.0" layoutY="260.0" mnemonicParsing="false" onAction="#handleButtonAction" style="-fx-max-width: 300;" text="Veure Taula Joc" AnchorPane.leftAnchor="54.0" AnchorPane.rightAnchor="358.6666666666667">
                 <font>
                     <Font size="18.0" />
                 </font>

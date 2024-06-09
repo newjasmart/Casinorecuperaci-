@@ -1,49 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cat.boscdelacoma.casinoreptefinal.PrimaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #28252e;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cat.boscdelacoma.casinoreptefinal.ClientController">
    <children>
-      <HBox layoutY="21.0" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #0fea88; -fx-border-radius: 10; -fx-border-width: 5;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.6666666666666288">
+      <AnchorPane layoutY="-2.0" prefHeight="533.0" prefWidth="600.0">
          <children>
-            <Button fx:id="btn_mysql" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #0fea88;" text="MySQL" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="40.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btn_objectdb" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #4e5a51;" text="ObjectDB" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="40.0" />
-               </font>
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-        <AnchorPane layoutX="1.0" layoutY="139.0" prefHeight="261.0" prefWidth="399.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <TableView fx:id="Taula_Client" layoutY="4.0" prefHeight="261.0" prefWidth="600.0">
+            <TableView fx:id="Taula_Client" layoutY="-1.0" prefHeight="341.0" prefWidth="600.0">
                <columns>
-                  <TableColumn fx:id="Client_Nom" prefWidth="202.66665649414062" text="Nom Client">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="nom" />
-                        </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="Client_DNI" prefWidth="181.3333740234375" text="DNI" />
-                  <TableColumn fx:id="Client_Punts_Fidelitat" prefWidth="215.33331298828125" text="Punts de Fidelitat" />
+                  <TableColumn fx:id="Client_Nom" prefWidth="202.66665649414062" text="Nom Client" />
+                  <TableColumn fx:id="Client_DNI" prefWidth="181.3333740234375" text="DNI Client" />
+                  <TableColumn fx:id="Client_PuntsFidelitat" prefWidth="215.33331298828125" text="Punts  Fidelitat" />
                </columns>
             </TableView>
+            <Button layoutX="123.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #e97451;" text="Modificar" />
+            <Button layoutX="410.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #ff0000;" text="Eliminar" />
          </children>
       </AnchorPane>
    </children>
