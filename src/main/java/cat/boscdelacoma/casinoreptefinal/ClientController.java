@@ -64,13 +64,40 @@ public class ClientController implements Initializable {
     private void handleModifyButtonAction(ActionEvent event) {
         Client selectedItem = Taula_Client.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            // Load secondary.fxml with selected item data
-            loadSecondaryScene(selectedItem);
+            // Confirm deletion
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirma Modificació");
+            alert.setHeaderText(null);
+            alert.setContentText("Esta segur de voler modificar  aquest client?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Remove the selected item from the table
+                Taula_Client.getItems().remove(selectedItem);
+
+                // Delete the item from the database
+                deleteClientFromDatabase(selectedItem);
+
+                // Load secondary.fxml with selected item data
+                loadSecondaryScene(selectedItem);
+            }
         } else {
             // Show error message
-            UtilsGUI.showAlert("Cap entrada seleccionada", "Siusplau selecciona l'entrada que vols modificar",Alert.AlertType.ERROR);
+            UtilsGUI.showAlert("Cap client seleccionat", "Siusplau selecciona el client que vols modificar", Alert.AlertType.ERROR);
         }
-    } 
+    }
+
+    private void deleteClientFromDatabase(Client client) {
+        try (Connection connection = SQLDBConnector.getConnection();
+             Statement statement = connection.createStatement()) {
+            String sql = "DELETE FROM Client WHERE dni = '" + client.getDni() + "'";
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            UtilsGUI.showAlert("Error", "No s'ha pogut eliminar el client de la base de dades", Alert.AlertType.ERROR);
+        }
+    }
+
     
     @FXML
     private void handleDeleteButtonAction(ActionEvent event) {
@@ -79,39 +106,39 @@ public class ClientController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirma Eliminació");
             alert.setHeaderText(null);
-            alert.setContentText("Esta segur de voler eliminar aquesta entrada?");
+            alert.setContentText("Esta segur de voler eliminar aquest client?");
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 deleteClient(selectedItem);
             }
         } else {
-            UtilsGUI.showAlert("Cap entrada seleccionada", "Siusplau selecciona l'entrada que vols eliminar",Alert.AlertType.ERROR);
+            UtilsGUI.showAlert("Cap client seleccionat", "Siusplau selecciona el client que vols eliminar",Alert.AlertType.ERROR);
         }
     }
     
     private void deleteClient(Client client) {
-        
+        deleteClientFromDatabase(client);
         Taula_Client.getItems().remove(client);
         
     }
     
     private void loadSecondaryScene(Client client) {
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
-        Parent root = loader.load();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+            Parent root = loader.load();
 
-        // Get the controller and set the item data
-        SecondaryController controller = loader.getController();
-        controller.setClientData(client);
+            // Get the controller and set the item data
+            SecondaryController controller = loader.getController();
+            controller.setClientData(client);
 
-        Stage stage = (Stage) Taula_Client.getScene().getWindow();
-        stage.setScene(new Scene(root));
-    } catch (IOException e) {
-        e.printStackTrace();
-        UtilsGUI.showAlert("Error", "No s'ha pogut modificar l'entrada",Alert.AlertType.ERROR);
+            Stage stage = (Stage) Taula_Client.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            UtilsGUI.showAlert("Error", "No s'ha pogut modificar el client",Alert.AlertType.ERROR);
+        }
     }
-}
     
     private void loadClientTable() throws IOException, SQLException {
 

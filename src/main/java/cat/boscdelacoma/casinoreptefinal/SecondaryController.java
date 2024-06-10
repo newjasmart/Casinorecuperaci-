@@ -148,7 +148,19 @@ public class SecondaryController {
         txt_punts_posicio.setText(String.valueOf(client.getPuntsFidelitat()));
         
     }
+    
+    public void setEmpleatData(Empleat empleat) {
+        txt_nom.setText(empleat.getNom());
+        txt_tipus_dni.setText(empleat.getDni());
+        txt_punts_posicio.setText(String.valueOf(empleat.getPosicio()));
+        
+    }
 
+    public void setJocData(Joc joc) {
+        txt_nom.setText(joc.getNom());
+        txt_tipus_dni.setText(joc.getTipus());
+    }
+    
     private void addJocData(String nomJoc, String tipusJoc) {
         try (Connection connection = getConnection()) {
             String sql = "INSERT INTO joc (Nom, Tipus) VALUES (?,?)";
