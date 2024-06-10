@@ -41,7 +41,7 @@ public class EmpleatController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            loadJocTable();
+            loadEmpleatTable();
         } catch (IOException ex) {
             System.out.println(ex);
         } catch (SQLException ex) {
@@ -49,7 +49,7 @@ public class EmpleatController implements Initializable {
         }
     }    
     
-    private void loadJocTable() throws IOException, SQLException {
+    private void loadEmpleatTable() throws IOException, SQLException {
 
 
         // Load data into TableView

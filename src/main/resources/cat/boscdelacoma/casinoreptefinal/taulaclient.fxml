@@ -16,8 +16,9 @@
                   <TableColumn fx:id="Client_PuntsFidelitat" prefWidth="215.33331298828125" text="Punts  Fidelitat" />
                </columns>
             </TableView>
-            <Button layoutX="123.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #e97451;" text="Modificar" />
-            <Button layoutX="410.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #ff0000;" text="Eliminar" />
+      
+            <Button fx:id="modifyButton" onAction="#handleModifyButtonAction" layoutX="123.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #e97451;" text="Modificar" />
+            <Button fx:id="deleteButton" onAction="#handleDeleteButtonAction" layoutX="410.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #ff0000;" text="Eliminar" />
          </children>
       </AnchorPane>
    </children>

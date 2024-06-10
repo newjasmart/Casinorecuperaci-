@@ -141,6 +141,13 @@ public class SecondaryController {
             e.printStackTrace();
         }
     }
+    
+    public void setClientData(Client client) {
+        txt_nom.setText(client.getNom());
+        txt_tipus_dni.setText(client.getDni());
+        txt_punts_posicio.setText(String.valueOf(client.getPuntsFidelitat()));
+        
+    }
 
     private void addJocData(String nomJoc, String tipusJoc) {
         try (Connection connection = getConnection()) {
