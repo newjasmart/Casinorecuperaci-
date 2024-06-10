@@ -30,13 +30,13 @@ public class MySQLDatabase {
     }
     private SQLDBConnector dbConnector;
     
-    public static void addClientData(String nomClient, String clientDNI, Integer PuntsFidelitat) {
+    public static void addClientData(String nomClient, String clientDNI, Integer puntsFidelitat) {
         try (Connection connection = getConnection()) {
             String sql = "INSERT INTO client (Nom, DNI, Punts de Fidelitat) VALUES (?, ?, ?)";
             try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
                 pstmt.setString(1, nomClient);
                 pstmt.setString(2, clientDNI);
-                pstmt.setInt(3, PuntsFidelitat);
+                pstmt.setInt(3, puntsFidelitat);
                 pstmt.executeUpdate();
             }
         } catch (SQLException e) {

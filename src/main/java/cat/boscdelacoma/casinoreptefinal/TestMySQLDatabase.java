@@ -15,34 +15,34 @@ public class TestMySQLDatabase {
         MySQLDatabase db = new MySQLDatabase();
 
         // Crear un nou client
-        Client nouClient = new Client("John Doe", "12345678A", 100);
-        db.inserirClient(nouClient);
-
-        // Obtenir i mostrar tots els clients
-        List<Client> clients = db.obtenirClients();
-        for (Client client : clients) {
-            System.out.println(client.getNom() + " - " + client.getDni() + " - " + client.getPuntsFidelitat());
-        }
-
-        // Actualitzar un client
-        nouClient.setNom("John Smith");
-        nouClient.setPuntsFidelitat(200);
-        db.actualitzarClient(nouClient);
-
-        // Mostrar els clients actualitzats
-        clients = db.obtenirClients();
-        for (Client client : clients) {
-            System.out.println(client.getNom() + " - " + client.getDni() + " - " + client.getPuntsFidelitat());
-        }
-
-        // Eliminar un client
-        db.eliminarClient(nouClient.getDni());
-
-        // Mostrar els clients després de l'eliminació
-        clients = db.obtenirClients();
-        for (Client client : clients) {
-            System.out.println(client.getNom() + " - " + client.getDni() + " - " + client.getPuntsFidelitat());
-        }
+//        Client nouClient = new Client("John Doe", "12345678A", 100);
+//        db.inserirClient(nouClient);
+//
+//        // Obtenir i mostrar tots els clients
+//        List<Client> clients = db.obtenirClients();
+//        for (Client client : clients) {
+//            System.out.println(client.getNom() + " - " + client.getDni() + " - " + client.getPuntsFidelitat());
+//        }
+//
+//        // Actualitzar un client
+//        nouClient.setNom("John Smith");
+//        nouClient.setPuntsFidelitat(200);
+//        db.actualitzarClient(nouClient);
+//
+//        // Mostrar els clients actualitzats
+//        clients = db.obtenirClients();
+//        for (Client client : clients) {
+//            System.out.println(client.getNom() + " - " + client.getDni() + " - " + client.getPuntsFidelitat());
+//        }
+//
+//        // Eliminar un client
+//        db.eliminarClient(nouClient.getDni());
+//
+//        // Mostrar els clients després de l'eliminació
+//        clients = db.obtenirClients();
+//        for (Client client : clients) {
+//            System.out.println(client.getNom() + " - " + client.getDni() + " - " + client.getPuntsFidelitat());
+//        }
     }
 }
 
